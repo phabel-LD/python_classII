@@ -1,6 +1,5 @@
 '''
 Clase: Entidad que define una serie de elementos que determinan un estado (atributos) y un comportamiento (método). Plantillas de los objetos.
-
 Objeto: Instancia de una clase
 '''
 
@@ -19,7 +18,6 @@ print(perro.__dict__)
 
 '''
 Herencia: Mecanismo por el cual una clase se deriva de otra de manera que extiende su funcionalidad. Al derivarse de una clase, hereda sus métodos y atributos.
-
 Superclase y subclase: La clase de la que estamos heredando se suele denominar clase base, clase padre, superclase, etc. La clase que recibe la herencia es la subclase.
 '''
 
@@ -63,16 +61,13 @@ print(Ves.__dict__)
 
 '''
 BioProjects: bioJulia, Bioconductor, BioRuby, BioPerl, BioJava
-
 Bibliotecas:
-
 NumPy: Arrays, multi-D, vectorization, Broadcasting, numeros imaginarios.
 Pandas (Panel Data): Dataframes, indexing integrado, estructura de datos.
 Matplotlib: Emplea Pyplot, lo que da interfaz similar a MATLAB, conectado a NumPy y Pandas, exploración de analisis de datos y plots para publicaciones, problemas con datasets grandes, visualización interactiva para web y graphical user interfaces.
 Seaborn: Librería para hacer gráficas estadísticas en Python, construida en matplotlib, integra estructuras de datos de Pandas y NumPy.
 SciPy: Colección de algoritmos matemáticos y funciones creadas en extensión de NumPy.
 Fuentes:
-
 http://biopython.org/DIST/docs/tutorial/Tutorial.html
 https://numpy.org/doc/stable/user/whatisnumpy.html
 https://pandas.pydata.org/about/index.html
