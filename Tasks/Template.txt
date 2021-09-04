@@ -1,40 +1,45 @@
 '''
 ## NAME:
-  [programName].py
+  <SCRIPT_NAME>.py
+  
 ## LANGUAGE & VERSION:
-  python [#.#]
+  python 3.8.5
+  
 ## AUTHOR:
-  [Full name] <[username]@gmail.com>
+  Phabel Antonio Lopez Delgado <phabel2001@gmail.com>
+  
 ## DATE:
-  [dd/mm/yyyy]
+  
+  
 ## DESCRIPTION & LOGIC:
-  [briefly describe what the program does]
+  
+
 ## USAGE:
-  [programName][-options/arguments]
+  <SCRIPT_NAME> python 3.8.5
+  
 ## ARGUMENTS:
-  [name]  [description]
+  
+
 ## INPUT - OUTPUT:
-  [Describe the input/output file formats ]
+     
     
-## EXAMPLES
-  [Example 1: describe the example, input and outputs]
+## EXAMPLES:
+    
+
 ## SOFTWARE REQUIREMENTS:
-  [list the libraries, program version needed to run the program]
-  
+    python3
+    
 ## FUNCTIONS:
-  [List requiered functions, its arguments and description]
-  
-  funtion_name(arguments):
-    [Description]
-    return()
-  
-   Example:
-   at_content([DNA_sequence]): 
-     [Calculates at_content of a sequence, poorly robust]
-     return()
+  Functions
+  Methods:
+
 ## EXTRA COMMENTS:
+    
+    
 ## LAST MODIFICATION:
-  [Other authors]: [Modifications]
-## GITHUB
-  [Insert GitHub link]
+  Phabel Antonio Lopez Delgado: <DATE>  [Creation]
+
+## SOURCE:
+  GitHub: https://github.com/phabel-LD/python_classII
+  
 '''
