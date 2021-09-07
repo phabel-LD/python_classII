@@ -40,9 +40,10 @@
 ##    DNA or RNA sequence from any known species. It is meant to receive a 
 ##    full characterization with several parameters, so it can be used to fill
 ##    in databases.
-class dna_sequence():
+class Dna_sequence():
   RNA = False
   DNA = False
+  
   ## Constructor
   def __init__(self, ID, length_kb, GC_content, Tm, species):
     self.ID = ID
@@ -50,51 +51,57 @@ class dna_sequence():
     self.GC_content = GC_content
     self.Tm = Tm
     self.species = species
+    
   ## Assign DNA type
   def DNA(self):
     self.DNA = True
     self.RNA = False
+    
   ## Assign RNA type
   def RNA(self):
     self.RNA = True
     self.DNA = False
+    
   ## Access DNA/RNA type
   def strand(self):
     print(self.DNA)
     print(self.RNA)
 
-seq1 = dna_sequence(1234, 3.5, .65, 24, 'E. coli')
+seq1 = Dna_sequence(1234, 3.5, .65, 24, 'E. coli')
 print(seq1.__dict__)
 seq1.DNA()
 print(seq1.__dict__)
 
-## 2) Apply Herency to characterize a virus strand and biol. cycle. Like the
+## 2) Apply inheritance to characterize a virus strand and biol. cycle. Like the
 ##    previous class, it is for a full virus (like SarsCov2) characterization for
 ##    further experiments and databases annotation.
-class virus(dna_sequence):
+class Virus(Dna_sequence):
   ## Strand attribute: single/doble
   strand_type = ''
+  
   ## Assign cycle type
   def lysogenic(self):
     self.cycle = 'Lysogenic'
+    
   def lytic(self):
     self.cycle = 'Lytic'
 
-SarsCov2 = virus(2341, 3.4, .63, 28, 'Coronavirus')
+SarsCov2 = Virus(2341, 3.4, .63, 28, 'Coronavirus')
 SarsCov2.RNA()
 SarsCov2.strand = 'Single(+)'
 print(SarsCov2.__dict__)
 
-## 3) Apply overriding to access a virus strand type DNA or RNA. Herency from virus()
+## 3) Apply overriding to access a virus strand type DNA or RNA. Herency from Virus()
 ## 4) Create a polymorphism by changing the strand() method to override the use
 ##    of strand_type
 ##    This last class can be implemented with a new approach for genomic analysis
 ##    of the virus
-class virus_strand(virus):
+class Virus_strand(Virus):
+  
   def strand(self):
     print(self.strand_type)
 
-SarsCov2 = virus_strand(65432, 3.5, 0.6, 30, 'Coronavirus')
+SarsCov2 = Virus_strand(65432, 3.5, 0.6, 30, 'Coronavirus')
 SarsCov2.strand_type = 'RNA'
 print(SarsCov2.__dict__)
 SarsCov2.strand()
