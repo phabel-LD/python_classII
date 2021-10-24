@@ -67,7 +67,7 @@ is documented in the Functions section.
   Phabel Antonio Lopez Delgado: October, 2021. [Creation]
 
 ## SOURCE:
-  GitHub: https://github.com/phabel-LD/python_classII/Tasks
+  GitHub: https://github.com/phabel-LD/python_classII/blob/master/Tasks/ExPASy.py
 '''
 
 # Libraries #######################
