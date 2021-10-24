@@ -34,27 +34,23 @@
         go_list = ["C:cytosol", "F:pyroglutamyl-peptidase activity", "P:protein folding"]
        
    Output:
-        -->Starting ExPASy analysis for O87765...
-        O87765_PCP_LACLM_GO.txt ready for O87765
-        ->ID: O87765 ExPASy analysis completed!
+        -->Starting ExPASy analysis for A0A0K2RVI7_9BETC...
+        A0A0K2RVI7_9BETC_GO.txt ready for A0A0K2RVI7_9BETC
+        ->ID: A0A0K2RVI7_9BETC ExPASy analysis completed!
 
-        -->Starting ExPASy analysis for O23729...
-        No GOs from the list were found in O23729.
-        ->ID: O23729 ExPASy analysis completed!
-        
         (...)
 
-        -->Starting ExPASy analysis for 000000...
-        ID: 000000 not available.
-        ->ID: 000000 ExPASy analysis completed!
+        -->Starting ExPASy analysis for B8I7R6_RUMCH...
+        No GOs from the list were found in B8I7R6_RUMCH.
+        ->ID: B8I7R6_RUMCH ExPASy analysis completed!
 
         ->-> Full ExPASy analysis completed! <-<-
    
 ## SOFTWARE REQUIREMENTS:
     python3
     
-## FUNCTIONS: There are five functions, four are
-subfunctions of the fifth main one. Every function
+## FUNCTIONS: There are six functions, five are
+subfunctions of the sixth main one. Every function
 is documented in the Functions section.
   
 ## EXTRA COMMENTS:
@@ -67,13 +63,14 @@ is documented in the Functions section.
   Phabel Antonio Lopez Delgado: October, 2021. [Creation]
 
 ## SOURCE:
-  GitHub: https://github.com/phabel-LD/python_classII/blob/master/Tasks/ExPASy.py
+  GitHub: https://github.com/phabel-LD/python_classII/Tasks
 '''
 
 # Libraries #######################
 from Bio import ExPASy
 from Bio import SwissProt
 from Bio import Entrez
+from Bio.ExPASy import Prosite
 import ssl
 
 
@@ -155,6 +152,33 @@ def get_abstract(record, ID):
         return(0)
     pass
 
+# Get PDOC
+def get_pdoc(record, ID):
+    '''This function gets de Prosite documentation (pdoc)
+    for each validated ID.
+        
+        Parameters:
+            record: A Bio.SwissProt.Record object from the ID
+                to be analyzed.
+            ID: A string with the ID from ExPASy to analyze.
+        Return: A string with the Prosite documentation (pdoc).
+    '''
+    # Get Prosite ID
+    for refer in record.cross_references:
+        if "PROSITE" in refer:
+            prosite_id = refer[1]
+            break
+    try: 
+        # Access UniProt
+        uniprot_handle = ExPASy.get_prosite_raw(prosite_id)
+        uniprot = Prosite.read(uniprot_handle)
+        # Get UniProt Documentation-pdoc
+        pdoc = uniprot.pdoc
+        return(pdoc)
+    # No PDOC available
+    except(UnboundLocalError):
+        return(0)
+
 
 # Write GO file
 def go_file(ID, go_found, record):
@@ -169,7 +193,7 @@ def go_file(ID, go_found, record):
                 to be analyzed.
         Return: No return value.
     '''
-    with open(f'{ID}_{record.entry_name}_GO.txt', 'w') as file:
+    with open(f'{record.entry_name}_GO.txt', 'w') as file:
         # ID and protein name
         file.write(f'->ID: {ID}.\n->PROTEIN NAME: {record.description}')
         # GOs and their definitions 
@@ -184,12 +208,18 @@ def go_file(ID, go_found, record):
         # Abstract
         abstract = get_abstract(record, ID)
         if not abstract:
-            file.write("->No abstract available")
+            file.write("\n->No PubMed abstract available")
         else:
-            file.write("\n->ABSTRACT: \n")
+            file.write("\n->ABSTRACT:\n")
             file.write(abstract)
+        # PDOC
+        pdoc = get_pdoc(record, ID)
+        if not pdoc:
+            file.write("\n->No PDOC available.")
+        else:
+            file.write(f'\n->UniProt PDOC: {pdoc}')
         # Update user
-        print(f'{ID}_{record.entry_name}_GO.txt ready for {ID}')
+        print(f'{record.entry_name}_GO.txt ready for {ID}')
     pass
 
 
@@ -231,8 +261,14 @@ def expasy_analysis(id_list, go_list):
 
 # Main Code ######################
 
-id_list = ["O87765", "O23729", "O23435", "000000"]
-go_list = ["C:cytosol", "F:pyroglutamyl-peptidase activity", "P:protein folding"]
+go_list = ["GO:0046755", "GO:0046761",
+              "GO:0046760", "GO:0039702",
+              "GO:0046765", "GO:0046762"]
+id_list = ["A0A0K2RVI7_9BETC", "A8R4D4_9BETC",
+                 "POLG_YEFV1", "POLG_DEN1W",
+                 "Q6W352_CVEN9", "D9SV67_CLOC7",
+                 "A9KSF7_LACP7", "B8I7R6_RUMCH"]
+
 
 expasy_analysis(id_list, go_list)
 
