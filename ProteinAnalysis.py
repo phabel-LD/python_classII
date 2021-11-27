@@ -15,7 +15,7 @@
   This script uses BioPython tools numpy, pandas, seaborn,
   matplotlib and argparse to run a functional protein analysis
   between a protein query and series of proteins. In order to
-  asses funciontal relatedness.
+  asses functional relatedness.
 
 ## USAGE:
   ProteinAnalysis.py python 3.8.5
@@ -63,7 +63,7 @@
     their docstrings.
   
 ## EXTRA COMMENTS:
-
+   This script imports the module motifs.py
 
     
     
