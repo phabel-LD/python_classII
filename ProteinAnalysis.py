@@ -5,8 +5,9 @@
 ## LANGUAGE & VERSION:
   python 3.8.5
   
-## AUTHOR:
-  Phabel Antonio Lopez Delgado <phabel2001@gmail.com>
+## AUTHORS:
+  Phabel Antonio Lopez Delgado <phabel2001@lcg.unam.mx>
+  Daianna Gonzales Padilla <daianna#lcg.unam.mx>
   
 ## DATE:
   November, 2021.
@@ -15,40 +16,109 @@
   This script uses BioPython tools numpy, pandas, seaborn,
   matplotlib and argparse to run a functional protein analysis
   between a protein query and series of proteins. In order to
-  asses functional relatedness.
+  asses functional relatedness to a query protein from the analyzed.
 
 ## USAGE:
   ProteinAnalysis.py python 3.8.5
   
-## ARGUMENTS:
+## ARGUMENTS & HELP:
 
-  -h, --help
-          Show this help message and exit
-  -int_matx_df
-          Prints intersection-matrix dataframe
-  -means_df
-          Prints means vector as dataframe.
-  -best
-          Prints best match protein.
-  -heatmap
-          Prints intersection-matrix heatmap.
+Protein functional analysis and comparison
+
+options:
+  -h, --help            show this help message and exit
+  -int_matx_df          Prints intersection-matrix dataframe
+  -means_df             Prints means vector as dataframe.
+  -best                 Prints best match protein.
+  -heatmap              Prints intersection-matrix heatmap.
+  -i INPUT [INPUT ...], --input INPUT [INPUT ...]
+                        List of the proteins files paths, separated by
+                        whitespace and comma
+  -d DISULFIDE, --disulfide DISULFIDE
+                        Distance between S-S atoms. Write -1 to use the
+                        default value: 8
+  -a ALPHA, --alpha ALPHA
+                        Sequence pattern to search alpha helices. Use default
+                        to search standard pattern
+  -b BETA, --beta BETA  Sequence pattern to search beta sheets. Use default to
+                        search standard pattern
+  -m MOTIF [MOTIF ...], --motif MOTIF [MOTIF ...]
+                        Motif to search and minimal length of the motif
+                        sequence
 
 ## INPUT - OUTPUT:
 
-   Input: 
+   Input: List of protein files to be analyzed (-i,), distance between S-S atoms (-d),
+           sequence pattern to search alpha helices (-a), sequence pattern to search
+           beta sheets (-b), motif to search and minimal length of the motif (-m)
 
    
-   Output: Prints functional analysis stadistics.
+   Output: Prints motifs found.Prints functional analysis stadistics, depending on the analysis argument
+           given (see ARGUMENTS & HELP). Saves my_protein object as an instance of ProtAnalysis class.
 
        
 ## EXAMPLES:
 
-   Input:
+   Input: (From Terminal)
+       python3 ProteinAnalysis.py -i 1kcw.pdb 1fat.pdb 3jbz.pdb 1kbe.pdb 4g68.pdb 1hp8.pdb
+       -d 2 -a default -b default -int_matx_df -means_df -best -heatmap
+
+       Query protein name as key (str): 1kbe
+
+   Output: (Std output)
+        {'name': '1kcw', 'num_bonds': 1, 'di_bonds': [[155, 181, 1.9980831, <Model id=0>, <Chain id=A>]]}
+        {'name': '1kcw', 'num_helix': 4, 'helix_seqs': [[['RIYHSHIDAPKD', 'KEKEKHIDRE', 'KVDKDNEDFQE', 'KVNKDDEEFIE'], <Model id=0>, <Chain id=A>]]}
+        (...)
+        {'name': '1hp8', 'num_bonds': 0, 'num_helix': 0, 'num_sheets': 1}
+        Proteins to be analyzed: [{'name': '1kcw', 'num_bonds': 1, 'num_helix': 4, 'num_sheets': 61}, {'name': '1fat', 'num_bonds': 0, 'num_helix': 4, 'num_sheets': 60}, {'name': '3jbz', 'num_bonds': 0, 'num_helix': 5, 'num_sheets': 58}, {'name': '1kbe', 'num_bonds': 0, 'num_helix': 0, 'num_sheets': 3}, {'name': '4g68', 'num_bonds': 0, 'num_helix': 3, 'num_sheets': 81}, {'name': '1hp8', 'num_bonds': 0, 'num_helix': 0, 'num_sheets': 1}]
+        Valid protein names are: ['1kcw', '1fat', '3jbz', '1kbe', '4g68', '1hp8']
+        Query protein name as key (str): 1kbe
+
+        -------- Starting analysis --------
+
+        Intersection matrix as np.array:
+
+        [[0.         0.04918033]
+         [0.         0.05      ]
+         [0.         0.05172414]
+         [0.         0.        ]
+         [0.         0.03703704]
+         [0.         0.33333333]] 
 
 
+        Intersection matrix's row means as np.array:
 
-   Output:
+        [0.02459016 0.025      0.02586207 0.         0.01851852 0.16666667] 
 
+
+        Intersection matrix as dataframe:
+
+              num_helix  num_sheets
+        1kcw        0.0    0.049180
+        1fat        0.0    0.050000
+        3jbz        0.0    0.051724
+        1kbe        0.0    0.000000
+        4g68        0.0    0.037037
+        1hp8        0.0    0.333333 
+
+        Intersection matrix means vector as dataframe:
+
+          1kbe
+        1kcw  0.024590
+        1fat  0.025000
+        3jbz  0.025862
+        1kbe  0.000000
+        4g68  0.018519
+        1hp8  0.166667 
+
+        Printing best match...
+        Best match           1kbe
+        1hp8  0.166667
+
+        Printing heatmap...
+
+        -------- Analysis compleyed -------- 
+   
 
 ## SOFTWARE REQUIREMENTS:
     python3
@@ -57,21 +127,22 @@
     pandas
     seaborn
     matplotlib.pyplot
+    motifs.py
     
 ## FUNCTIONS: There are 8 functions, each one is necesary
     for a step in the analysis. Their documentation is in
-    their docstrings.
+    their docstrings. Many other functions are imported in
+    motifs from <motifs.py>
   
 ## EXTRA COMMENTS:
    This script imports the module motifs.py
 
-    
-    
 ## LAST MODIFICATION:
-  Phabel Antonio Lopez Delgado: November, 2021. [Creation]
+  Phabel Antonio Lopez Delgado & Daianna Gonzáles Padilla: November, 2021. [Creation]
 
 ## SOURCE:
   GitHub: https://github.com/phabel-LD/python_classII/
+  
 '''
 
 
@@ -84,10 +155,17 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+import motifs as mo
 
 ##################################################################
 # Functions
 ##################################################################
+
+# Dictionary of single letter code of aa necesaary for further analysis
+aa_code = {'CYS': 'C', 'ASP': 'D', 'SER': 'S', 'GLN': 'Q', 'LYS': 'K',
+ 'ILE': 'I', 'PRO': 'P', 'THR': 'T', 'PHE': 'F', 'ASN': 'N',
+ 'GLY': 'G', 'HIS': 'H', 'LEU': 'L', 'ARG': 'R', 'TRP': 'W',
+ 'ALA': 'A', 'VAL':'V', 'GLU': 'E', 'TYR': 'Y', 'MET': 'M'}
 
 def comparison_intersection(protein_A, protein_B):
     '''
@@ -269,25 +347,52 @@ def print_best_match(proteins, query_prot):
 parser = argparse.ArgumentParser(description = "Protein functional analysis and comparison")
 
 # Arguments
+# Print matrix dataframe
 parser.add_argument("-int_matx_df",
                     action = "store_true",
                     help = "Prints intersection-matrix dataframe",
                     required = False)
-
+# Print means dataframe
 parser.add_argument("-means_df",
                     action = "store_true",
                     help = "Prints means vector as dataframe.",
                     required = False)
-
+# Print best match protein for query
 parser.add_argument("-best",
                     action = "store_true",
                     help = "Prints best match protein.",
                     required = False)
-
+# Print heatmap
 parser.add_argument("-heatmap",
                     action = "store_true",
                     help = "Prints intersection-matrix heatmap.",
                     required = False)
+# Request input files
+parser.add_argument("-i", "--input",  nargs='+',
+                    type=str,
+                    help="List of the proteins files paths, separated by whitespace and comma",
+                    required=True)
+# Give distance between S atoms
+parser.add_argument("-d", "--disulfide",
+                    type=float,
+                    help="Distance between S-S atoms. Write -1 to use the default value: 8",
+                    required=False)
+# Give a pattern to search helices
+parser.add_argument("-a", "--alpha",
+                    type=str,
+                    help="Sequence pattern to search alpha helices. Use default to search standard pattern",
+                    required=False)
+# Give a pattern to search sheets
+parser.add_argument("-b", "--beta",
+                    type=str,
+                    help="Sequence pattern to search beta sheets. Use default to search standard pattern",
+                    required=False)
+# Give a new motif to search and its minimal length
+parser.add_argument("-m", "--motif", nargs='+',
+                    type=str,
+                    help="Motif to search and minimal length of the motif sequence",
+                    required=False)
+
 
 # Parse arguments
 args = parser.parse_args()
@@ -298,33 +403,74 @@ means_df_action = args.means_df
 best_action = args.best
 heatmap_action = args.heatmap
 
+##################################################################
+# ProtAnalysis class
+################################################################## 
+class ProtAnalysis():
+    ''' This class stores data from the protein analysis. '''
+    def __init__(self, query_name, query_prot, proteins, matrix, means):
+        self.query_name = query_name
+        self.query_prot = query_prot
+        self.proteins = proteins
+        self.matrix = matrix
+        self.means = means
+
 
 ##################################################################
 # Main Code
 ##################################################################
 
-# Protein motif cuantification
-prot1 = {"name": "A", "bonds": 5, "motif1": 4, "motif2": 5, "motif3": 0, "motif4": 12, "motif5": 1}
-prot2 = {"name": "B", "bonds": 2, "motif1": 6, "motif2": 5, "motif3": 0, "motif4": 10, "motif5": 8}
-prot3 = {"name": "C", "bonds": 6, "motif1": 0, "motif2": 1, "motif3": 3, "motif4": 12, "motif5": 18}
-prot4 = {"name": "D", "bonds": 8, "motif1": 4, "motif2": 7, "motif3": 9, "motif4": 13, "motif5": 0}
+# Get protein dictionaries
+if not args.alpha and not args.disulfide and not args.beta and not args.motif:
+    print('At least one type of motif is required')
 
+# For each path, check if they exist
+print("\n-------- Motifs -------- \n")
+proteins = []
+for path in args.input:
+    try:
+        # Check they are .pdb files
+        if path.endswith('.pdb'):
+            # Parse protein name from the path file
+            if not '/' in path:
+                prot_name=str(path).split('.')[0]
+            else:
+                prot_name = str(path).split('/')[-1]
+                prot_name = str(prot_name).split('.')[0]
 
-#class ProteinData:
-    
+            # Obtain motifs for each protein
+            protein = mo.unique_dict(path, prot_name, args.disulfide, args.alpha, args.beta, args.motif)
+            proteins.append(protein)
+        else:
+            print(f"\n{path} file must have .pdb format\n")
+    except FileNotFoundError as ex:
+        print(path,' : File not found')
 
+# Get protein names
+protein_names = []
+for protein in proteins:
+    protein_names.append(protein["name"])
 
-# Proteins to analyze as a list of dicts
-proteins = [prot1, prot2, prot3, prot4]
+# Ask for query protein name
+print(f"Proteins to be analyzed: {proteins}")
+print(f"Valid protein names are: {protein_names}")
+query_name = input("Query protein name as key (str): ")
+query_valid = False
 
-# Set query protein to analyze
-query_prot = prot3
-# Set query protein's name as string
-query_name = query_prot["name"]
+# Validate query protein
+if query_name in protein_names:
+    for protein in proteins:
+        if protein["name"] == query_name:
+            query_prot = protein
+            query_valid = True
+# Query protein is not found
+if not query_valid:
+    print(f"No query protein named {query_name} in searched protein names. Valid names are: {protein_names}")
+    # Exit script with error
+    exit(1)
 
-# Start nnalysis
+# Start Analysis
 print("\n-------- Starting analysis --------")
-
 
 # Default analysis
 # Print intersection matrix as np.array
@@ -337,25 +483,29 @@ means = intersections_means(proteins, query_prot)
 print("Intersection matrix's row means as np.array:\n")
 print(means, "\n\n")
 
+# Create object ProtAnalysis
+my_protein = ProtAnalysis(query_name, query_prot, proteins, matrix, means)
+
+
 # Analysis with arguments
 if matrix_df_action:
-    intersection_df = intersect_matrix_df(proteins, query_prot)
+    intersection_df = intersect_matrix_df(my_protein.proteins, my_protein.query_prot)
     print("\nIntersection matrix as dataframe:\n")
     print(intersection_df, "\n\n")
 
 if means_df_action:
-    means_df = get_means_df(proteins, query_prot)
+    means_df = get_means_df(my_protein.proteins, my_protein.query_prot)
     print("\nIntersection matrix means vector as dataframe:\n")
     print(means_df, "\n\n")
 
 if best_action:
     print("Printing best match...")
-    print_best_match(proteins, query_prot)
+    print_best_match(my_protein.proteins, my_protein.query_prot)
     print("\n\n")
 
 if heatmap_action:
     print("Printing heatmap...")
-    plot_heatmap(proteins, query_prot)
+    plot_heatmap(my_protein.proteins, my_protein.query_prot)
     print("\n\n")
 
 print("-------- Analysis compleyed -------- \n\n")
