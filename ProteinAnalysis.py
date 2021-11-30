@@ -358,5 +358,5 @@ if heatmap_action:
     plot_heatmap(proteins, query_prot)
     print("\n\n")
 
-print("-------- Analysis compleyed -------- \n\n")
+print("-------- Analysis completed -------- \n\n")
 
