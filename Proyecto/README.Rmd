@@ -18,8 +18,6 @@ En este repositorio se encuentra todos los archivos y scripts del proyecto semes
 Python v3
 R v3.4.0
 
-## Licencia
-No aplica
 
 ## Contacto
 Phabel Antonio López Delgado <phabel@lcg.unam.mx>
