@@ -1,6 +1,6 @@
 ---
 title: "README.md"
-author: "Phabel Antonio López Delgado"
+author: "Phabel Antonio López Delgado & Daianna González Padilla"
 date: "12/1/2021"
 output: html_document
 ---
@@ -18,7 +18,7 @@ En este repositorio se encuentra todos los archivos y scripts del proyecto semes
 Python v3
 R v3.4.0
 
-## Licensia
+## Licencia
 No aplica
 
 ## Contacto
@@ -48,6 +48,11 @@ EL primer punto es cuantificar los motivos de interés biológico, particularmen
 6) Nótese que con el fin de evitar la autocomparación, el score de la proteína query consigo misma se trivialia a cero.
 
 ### Pregunta
+Este programa pretende proporcionar un herramienta rápida y simple para la identificación y conteo de motivos de una secuencia proteíca, y la subsecuente compración 
+de una proteína query con otras con base en el número de cada uno de los motivos econtrados. La pregunta que se pretende responder es si existe una relación o 
+similitud funcional entre las proteínas que tienen numeros parecidos o cercanos de cada uno de los motivos que poseen. Para ello se deberán tomar casos conocidos de
+proteínas funcionalmente parecidas y usando este programa calcular su número de motivos para verificar si poseen o no numeros parecidos.   
+ 
 
 ### Resultados
 Dependiendo de los argumentos de análisis pasados por línea de comandos al programa, el número de resultados obtenidos puede variar.
@@ -91,6 +96,8 @@ Se puede imprimir el heatmap correspondiente a la matriz de intersección (opcio
 Dando por finalizado los resultados que se pueden obtener. Los análisis opcionales se pasan con argumentos adicionales; véase en la documentación del script.
 
 ### Conclusión
-
+De la ejecución del programa es posible concluir que el próposito del proyecto se cumplió al crear una herramienta rápida, simple y eficiente para identificar y contar
+motivos, así como para comprar proteínas según tal conteo. Sin embargo, la hipótesis de que existe una relación funcional según la similitud en número de motivos 
+no es clara ni contundente puesto que el reconocimiento mismo de motivos se complica al no existir patrones únicos o consenso para la identificación de los mismos; se necesitarán estudios evolutivos y funcionales que integren además información sobre la localización de los motivos y la similitud en sus secuencias de aminoácidos.
 
 
