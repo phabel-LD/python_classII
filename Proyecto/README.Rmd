@@ -19,7 +19,7 @@ Python v3
 R v3.4.0
 
 ## Licensia
-No aplica
+Para ver hacer click en [LICENCIA]()
 
 ## Contacto
 Phabel Antonio López Delgado <phabel@lcg.unam.mx>
