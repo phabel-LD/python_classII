@@ -62,35 +62,35 @@ Con la línea de ejemplo base...
 python3 ProteinAnalysis.py -i 1kcw.pdb 1fat.pdb 3jbz.pdb 1kbe.pdb 4g68.pdb 5v6r.pdb -d 2 -a default -b default --int_matx_df --means_df --best --heatmap
 
 Se obtienen los motivos...
-[Análisis de motivos]()
+[Análisis de motivos](Resultados/motifs.png)
 
 
 Ingresando la proteína query...
-[Proteína query ingresada]()
+[Proteína query ingresada](Resultados/query_prot.png)
 
 
 Se crea la matriz de intersección como objeto numpy por default...
-[Matriz de intersección como array de numpy]()
+[Matriz de intersección como array de numpy](Resultados/matrix_np.png)
 
 
 Se crea el vector de promedios como objeto numpy por default...
-[Vector de promedios como array de numpy]()
+[Vector de promedios como array de numpy](Resultados/vector_np.png)
 
 
 Se puede convertir la matriz de intersección de array de numpy a dataframe de pandas (opcional --int_matx_df)...
-[Matriz de intersección como dataframe de pandas]()
+[Matriz de intersección como dataframe de pandas](Resultados/matrix_df.png)
 
 
 Se puede convertir el vector de promedios de array de numpy a dataframe de pandas (opcional --means_df)...
-[Vector de promedios como dataframe de pandas]()
+[Vector de promedios como dataframe de pandas](Resultados/vector_df.png)
 
 
 Se puede mostrar en pantalla el best match para la proteína query tomando el máximo score obtenido en el vector de promedios (opcional --best)...
-[Best match encontrado]()
+[Best match encontrado](Resultados/best.png)
 
 
 Se puede imprimir el heatmap correspondiente a la matriz de intersección (opcional --heatmap)...
-[Heatmap como objeto de seaborn]()
+[Heatmap como objeto de seaborn](Resultados/heatmap.png)
 
 
 Dando por finalizado los resultados que se pueden obtener. Los análisis opcionales se pasan con argumentos adicionales; véase en la documentación del script.
